@@ -2,6 +2,7 @@ import './Calculator.scss';
 
 import React, { Component } from 'react';
 import { Tabs } from 'antd';
+import { WrappedHorizontalLoginForm } from './Loan';
 
 const { TabPane } = Tabs;
 
@@ -10,7 +11,7 @@ class Calculator extends Component {
     return (
       <Tabs defaultActiveKey="1" type="card">
         <TabPane tab="Loan" key="1">
-          Content of Loan
+          <WrappedHorizontalLoginForm></WrappedHorizontalLoginForm>
         </TabPane>
         <TabPane tab="Lease" key="2">
           Content of Lease
