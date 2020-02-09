@@ -1,6 +1,7 @@
-import React, { Component } from "react";
-import { Tabs } from "antd";
-import "./Calculator.scss";
+import './Calculator.scss';
+
+import React, { Component } from 'react';
+import { Tabs } from 'antd';
 
 const { TabPane } = Tabs;
 
