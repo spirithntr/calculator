@@ -7,12 +7,12 @@ function hasErrors(fieldsError): boolean {
 }
 
 class HorizontalLoginForm extends React.Component<FormProps> {
-  componentDidMount() {
+  componentDidMount(): void {
     // To disable submit button at the beginning.
     this.props.form.validateFields();
   }
 
-  handleSubmit = (e: { preventDefault: () => void }) => {
+  handleSubmit = (e: { preventDefault: () => void }): void => {
     e.preventDefault();
     this.props.form.validateFields((err: any, values: any) => {
       if (!err) {

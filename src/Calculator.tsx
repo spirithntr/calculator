@@ -7,7 +7,7 @@ import { WrappedHorizontalLoginForm } from './Loan';
 const { TabPane } = Tabs;
 
 class Calculator extends Component {
-  render() {
+  render(): React.ReactNode {
     return (
       <Tabs defaultActiveKey="1" type="card">
         <TabPane tab="Loan" key="1">
