@@ -1,6 +1,8 @@
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import Calculator from './Calculator';
+import App from './App';
 
 declare module 'react' {
   interface HTMLAttributes<T> extends AriaAttributes, DOMAttributes<T> {
@@ -8,6 +10,5 @@ declare module 'react' {
   }
 }
 
-const container = document.createElement('div');
-document.body.appendChild(container);
-ReactDOM.render(<Calculator />, container);
+const container = document.getElementById('root');
+ReactDOM.render(<App />, container);
