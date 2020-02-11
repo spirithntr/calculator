@@ -4,7 +4,7 @@ import CostInput from './CostInput';
 import RadioButtons from './RadioButtons';
 import ZipcodeInput from './ZipCodeInput';
 import InfoCard from './InfoCard';
-import mockedDealer from './mock/dealer';
+import { dealerInfo, DealerInfo } from './mock/dealer';
 
 type State = {
   creditScore: number;
@@ -13,6 +13,7 @@ type State = {
   downPayment: number;
   apr: number;
   term: number;
+  dealerInfo?: DealerInfo | null;
 };
 
 export default class App extends Component<any, State> {
@@ -25,6 +26,7 @@ export default class App extends Component<any, State> {
     apr: 0,
     term: 24,
     msrp: 20000,
+    dealerInfo: null,
   };
 
   getMonthlyLoan = () => {
@@ -46,6 +48,15 @@ export default class App extends Component<any, State> {
       return 1.2;
     }
   };
+
+  getDealerInfo = () =>
+    new Promise<DealerInfo>(resolve => {
+      setTimeout(() => resolve(dealerInfo), 1000);
+    });
+
+  componentDidMount() {
+    this.getDealerInfo().then(dealerInfo => this.setState({ dealerInfo }));
+  }
 
   render(): React.ReactNode {
     return (
@@ -117,13 +128,9 @@ export default class App extends Component<any, State> {
           </Col>
           <Col>
             <InfoCard
-              dealerName={'kolesa'}
-              dealerPhone={'+12343242'}
-              dealerRating={4.5}
+              dealer={this.state.dealerInfo}
               monthlyPay={this.getMonthlyLoan()}
               taxes={'426000'.split('').map(num => +num * 11)}
-              msrp={10000}
-              vehicle={'chevrolet'}
             ></InfoCard>
           </Col>
         </Row>

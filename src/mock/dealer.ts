@@ -6,7 +6,7 @@ export const dealerInfo: DealerInfo = {
   rating: 4.5,
 };
 
-type DealerInfo = {
+export type DealerInfo = {
   msrp: number;
   vehicleName: string;
   name: string;
