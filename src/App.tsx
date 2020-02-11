@@ -89,16 +89,18 @@ export default class App extends Component<any, State> {
                       ></CostInput>
                     </Col>
                   </Form.Row>
-                  <Form.Row className="m-2">
-                    <Col>
+                  <Form.Row>
+                    <Col className="m-2">
                       <RadioButtons
+                        label="Terms"
                         values={[12, 24, 36, 48, 72, 84]}
                         defaultValue={this.state.term}
                         handleRadioChange={e => this.setState({ term: e })}
                       />
                     </Col>
-                    <Col>
+                    <Col className="m-2">
                       <RadioButtons
+                        label="Credit Score"
                         values={this.creditScoreSteps}
                         defaultValue={this.state.creditScore}
                         handleRadioChange={e => this.setState({ creditScore: e })}
@@ -115,13 +117,19 @@ export default class App extends Component<any, State> {
               <Tab eventKey="lease" title="Lease">
                 <Col>
                   <RadioButtons
+                    label="Terms"
                     values={[12, 24, 36, 48, 72, 84]}
                     defaultValue={4}
                     handleRadioChange={e => console.log(e)}
                   />
                 </Col>
                 <Col>
-                  <RadioButtons values={[1, 2, 3, 4, 5]} defaultValue={4} handleRadioChange={e => console.log(e)} />
+                  <RadioButtons
+                    label="Credit Score"
+                    values={[1, 2, 3, 4, 5]}
+                    defaultValue={4}
+                    handleRadioChange={e => console.log(e)}
+                  />
                 </Col>
               </Tab>
             </Tabs>

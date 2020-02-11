@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Card, ListGroup, Spinner } from 'react-bootstrap';
 import { DealerInfo } from './mock/dealer';
+import StarRatings from 'react-star-ratings';
 
 import './InfoCard.scss';
 
@@ -23,7 +24,16 @@ export default class InfoCard extends Component<Props> {
               <ListGroup.Item>taxes: {this.props.taxes.join(', ')}</ListGroup.Item>
               <ListGroup.Item>dealer: {this.props.dealer.name}</ListGroup.Item>
               <ListGroup.Item>phone number: {this.props.dealer.phone}</ListGroup.Item>
-              <ListGroup.Item>rating: {this.props.dealer.rating}</ListGroup.Item>
+              <ListGroup.Item>
+                rating:
+                <StarRatings
+                  className="m-2"
+                  rating={this.props.dealer.rating}
+                  starRatedColor="blue"
+                  starDimension="1.5em"
+                  numberOfStars={5}
+                />
+              </ListGroup.Item>
             </ListGroup>
           ) : (
             <Spinner id="loading" animation="border" />
