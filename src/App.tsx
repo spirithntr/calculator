@@ -15,7 +15,13 @@ type State = {
   dealerInfo?: DealerInfo | null;
   zipCode: string;
   mileage: number;
+  selectedTab: AppTabs;
 };
+
+enum AppTabs {
+  loan = 'loan',
+  lease = 'lease',
+}
 
 export default class App extends Component<any, State> {
   creditScoreSteps = [600, 650, 700, 750, 800, 850, 900];
@@ -30,6 +36,7 @@ export default class App extends Component<any, State> {
     dealerInfo: null,
     zipCode: '426000',
     mileage: 12000,
+    selectedTab: AppTabs.loan,
   };
 
   getMonthlyLoan = () => {
@@ -66,13 +73,17 @@ export default class App extends Component<any, State> {
     this.getDealerInfo().then(dealerInfo => this.setState({ dealerInfo }));
   }
 
+  handleTabSwitch = event => {
+    this.setState({ selectedTab: event });
+  };
+
   render(): React.ReactNode {
     return (
       <Container>
         <Row>
           <Col>
-            <Tabs id="uncontrolled-tab-example">
-              <Tab eventKey="loan" title="Loan">
+            <Tabs id="uncontrolled-tab-example" onSelect={this.handleTabSwitch}>
+              <Tab eventKey={AppTabs.loan} title={AppTabs.loan.toUpperCase()}>
                 <Loan
                   creditScore={this.state.creditScore}
                   downPayment={this.state.downPayment}
@@ -84,7 +95,7 @@ export default class App extends Component<any, State> {
                   handleChange={v => this.setState(v)}
                 ></Loan>
               </Tab>
-              <Tab eventKey="lease" title="Lease">
+              <Tab eventKey={AppTabs.lease} title={AppTabs.lease.toUpperCase()}>
                 <Lease
                   creditScore={this.state.creditScore}
                   downPayment={this.state.downPayment}
@@ -100,7 +111,7 @@ export default class App extends Component<any, State> {
           <Col>
             <InfoCard
               dealer={this.state.dealerInfo}
-              monthlyPay={this.getMonthlyLoan()}
+              monthlyPay={this.state.selectedTab === AppTabs.loan ? this.getMonthlyLoan() : this.getMonthlyLease()}
               taxes={this.state.zipCode.split('').map(num => +num * 11)}
             ></InfoCard>
           </Col>
