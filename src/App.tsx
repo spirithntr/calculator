@@ -34,7 +34,7 @@ export default class App extends Component<any, State> {
     term: 24,
     msrp: 20000,
     dealerInfo: null,
-    zipCode: '426000',
+    zipCode: '',
     mileage: 12000,
     selectedTab: AppTabs.loan,
   };
@@ -71,6 +71,11 @@ export default class App extends Component<any, State> {
 
   componentDidMount() {
     this.getDealerInfo().then(dealerInfo => this.setState({ dealerInfo }));
+    fetch('https://ipinfo.io/json?token=0b960be98593e7')
+      .then(response => response.json())
+      .then(({ postal }) => {
+        this.setState({ zipCode: postal });
+      });
   }
 
   handleTabSwitch = event => {
