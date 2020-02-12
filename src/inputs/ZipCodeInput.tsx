@@ -8,7 +8,6 @@ type Props = {
 };
 
 export default class ZipcodeInput extends Component<Props> {
-  value = this.props.value;
   handleChange = (value: any) => {
     this.props.handleInputChange(value);
   };
@@ -18,7 +17,7 @@ export default class ZipcodeInput extends Component<Props> {
         <Form.Label>{this.props.label}</Form.Label>
         <Form.Control
           pattern="[0-9]{6}"
-          defaultValue={this.value}
+          value={this.props.value}
           type="text"
           onChange={v => this.handleChange(v.target.value)}
         />
