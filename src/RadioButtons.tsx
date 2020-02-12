@@ -27,7 +27,7 @@ export default class RadioButtons extends Component<Props> {
 
   render(): React.ReactNode {
     return (
-      <ButtonToolbar>
+      <ButtonToolbar className="m-2">
         <Form.Label>{this.props.label}</Form.Label>
         <ToggleButtonGroup
           className="d-flex w-100"

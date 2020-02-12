@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Form, Col } from 'react-bootstrap';
 import CostInput from './CostInput';
-import RadioButtons from './RadioButtons';
 import ZipcodeInput from './ZipCodeInput';
 import SelectInput from './SelectInput';
 
@@ -40,20 +39,20 @@ export default class Lease extends Component<Props> {
           </Col>
         </Form.Row>
         <Form.Row>
-          <Col className="m-2">
-            <RadioButtons
-              label="Terms"
-              values={[12, 24, 36, 48, 72, 84]}
-              defaultValue={this.props.term}
-              handleRadioChange={v => this.handleKeyChange('term', v)}
+          <Col>
+            <SelectInput
+              label="Mileage"
+              options={[10000, 12000, 15000]}
+              value={this.props.mileage}
+              handleInputChange={v => this.handleKeyChange('mileage', v)}
             />
           </Col>
-          <Col className="m-2">
-            <RadioButtons
+          <Col>
+            <SelectInput
               label="Credit Score"
-              values={this.creditScoreSteps}
-              defaultValue={this.props.creditScore}
-              handleRadioChange={v => this.handleKeyChange('creditScore', v)}
+              options={this.creditScoreSteps}
+              value={this.props.creditScore}
+              handleInputChange={v => this.handleKeyChange('creditScore', v)}
             />
           </Col>
         </Form.Row>
@@ -66,14 +65,12 @@ export default class Lease extends Component<Props> {
             ></ZipcodeInput>
           </Col>
           <Col>
-            <Col>
-              <SelectInput
-                value={this.props.term}
-                options={[24, 36, 48]}
-                handleInputChange={v => this.handleKeyChange('term', v)}
-                label="Terms"
-              ></SelectInput>
-            </Col>
+            <SelectInput
+              value={this.props.term}
+              options={[24, 36, 48]}
+              handleInputChange={v => this.handleKeyChange('term', v)}
+              label="Terms"
+            ></SelectInput>
           </Col>
         </Form.Row>
       </Form>

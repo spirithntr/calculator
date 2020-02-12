@@ -29,7 +29,7 @@ export default class App extends Component<any, State> {
     msrp: 20000,
     dealerInfo: null,
     zipCode: '426000',
-    mileage: 1000,
+    mileage: 12000,
   };
 
   getMonthlyLoan = () => {

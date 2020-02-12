@@ -40,7 +40,7 @@ export default class Loan extends Component<Props> {
           </Col>
         </Form.Row>
         <Form.Row>
-          <Col className="m-2">
+          <Col>
             <RadioButtons
               label="Terms"
               values={[12, 24, 36, 48, 72, 84]}
@@ -48,7 +48,7 @@ export default class Loan extends Component<Props> {
               handleRadioChange={v => this.handleKeyChange('term', v)}
             />
           </Col>
-          <Col className="m-2">
+          <Col>
             <RadioButtons
               label="Credit Score"
               values={this.creditScoreSteps}
@@ -66,13 +66,11 @@ export default class Loan extends Component<Props> {
             ></ZipcodeInput>
           </Col>
           <Col>
-            <Col>
-              <CostInput
-                value={this.props.apr * 100}
-                handleInputChange={v => this.handleKeyChange('apr', v / 100)}
-                label="APR %"
-              ></CostInput>
-            </Col>
+            <CostInput
+              value={this.props.apr * 100}
+              handleInputChange={v => this.handleKeyChange('apr', v / 100)}
+              label="APR %"
+            ></CostInput>
           </Col>
         </Form.Row>
       </Form>

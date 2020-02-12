@@ -13,12 +13,13 @@ export default class SelectInput extends Component<Props> {
     this.props.handleInputChange(value);
   };
   render(): React.ReactNode {
-    const options = this.props.options.map((option, index) => <option key={index}>{option}</option>);
+    const options = this.props.options.map((option, index) => <option key={index}>{`${option}`}</option>);
     return (
       <Form.Group className="m-2" controlId="exampleForm.ControlSelect1">
         <Form.Label>{this.props.label}</Form.Label>
         <Form.Control
           as="select"
+          className="w-100"
           value={`${this.props.value}`}
           onChange={v => this.handleChange(+(v.target as any).value)}
         >
