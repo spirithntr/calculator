@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Form, Col } from 'react-bootstrap';
-import CostInput from './CostInput';
-import RadioButtons from './RadioButtons';
-import ZipcodeInput from './ZipCodeInput';
+import CostInput from './inputs/CostInput';
+import RadioButtons from './inputs/RadioButtons';
+import ZipcodeInput from './inputs/ZipCodeInput';
 
 type Props = {
   creditScore: number;

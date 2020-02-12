@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Form, Col } from 'react-bootstrap';
-import CostInput from './CostInput';
-import ZipcodeInput from './ZipCodeInput';
-import SelectInput from './SelectInput';
+import CostInput from './inputs/CostInput';
+import ZipcodeInput from './inputs/ZipCodeInput';
+import SelectInput from './inputs/SelectInput';
 
 type Props = {
   downPayment: number;
