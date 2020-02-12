@@ -18,9 +18,7 @@ type Props = {
 export default class Loan extends Component<Props> {
   creditScoreSteps = [600, 650, 700, 750, 800, 850, 900];
 
-  handleKeyChange = (key: keyof Props, value: any) => {
-    return this.props.handleChange({ [key]: value });
-  };
+  handleKeyChange = (key: keyof Props, value: number | string) => this.props.handleChange({ [key]: value });
 
   render(): React.ReactNode {
     return (
