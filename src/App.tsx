@@ -33,6 +33,12 @@ export default class App extends Component<any, State> {
   };
 
   getMonthlyLoan = () => {
+    const { msrp, tradeIn, downPayment, term, apr } = this.state;
+
+    return ((msrp - tradeIn - downPayment) / term) * this.getCreditScoreValue() * apr;
+  };
+
+  getMonthlyLease = () => {
     const { msrp, tradeIn, downPayment, term } = this.state;
     const mileage = 1000;
 
