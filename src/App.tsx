@@ -5,6 +5,7 @@ import RadioButtons from './RadioButtons';
 import ZipcodeInput from './ZipCodeInput';
 import InfoCard from './InfoCard';
 import { dealerInfo, DealerInfo } from './mock/dealer';
+import Loan from './Loan';
 
 type State = {
   creditScore: number;
@@ -14,6 +15,7 @@ type State = {
   apr: number;
   term: number;
   dealerInfo?: DealerInfo | null;
+  zipCode: string;
 };
 
 export default class App extends Component<any, State> {
@@ -27,6 +29,7 @@ export default class App extends Component<any, State> {
     term: 24,
     msrp: 20000,
     dealerInfo: null,
+    zipCode: '426000',
   };
 
   getMonthlyLoan = () => {
@@ -65,54 +68,16 @@ export default class App extends Component<any, State> {
           <Col>
             <Tabs id="uncontrolled-tab-example">
               <Tab eventKey="loan" title="Loan">
-                <Form>
-                  <Form.Row>
-                    <Col>
-                      <CostInput
-                        value={this.state.downPayment}
-                        handleInputChange={e => this.setState({ downPayment: e })}
-                        label="Down Payment"
-                      ></CostInput>
-                    </Col>
-                    <Col>
-                      <CostInput
-                        value={this.state.tradeIn}
-                        handleInputChange={e => this.setState({ tradeIn: e })}
-                        label="Trade-In"
-                      ></CostInput>
-                    </Col>
-                    <Col>
-                      <CostInput
-                        value={this.state.apr * 100}
-                        handleInputChange={e => this.setState({ apr: e / 100 })}
-                        label="APR %"
-                      ></CostInput>
-                    </Col>
-                  </Form.Row>
-                  <Form.Row>
-                    <Col className="m-2">
-                      <RadioButtons
-                        label="Terms"
-                        values={[12, 24, 36, 48, 72, 84]}
-                        defaultValue={this.state.term}
-                        handleRadioChange={e => this.setState({ term: e })}
-                      />
-                    </Col>
-                    <Col className="m-2">
-                      <RadioButtons
-                        label="Credit Score"
-                        values={this.creditScoreSteps}
-                        defaultValue={this.state.creditScore}
-                        handleRadioChange={e => this.setState({ creditScore: e })}
-                      />
-                    </Col>
-                  </Form.Row>
-                  <ZipcodeInput
-                    value="426000"
-                    handleInputChange={e => console.log('zip: ', e)}
-                    label="Post Code"
-                  ></ZipcodeInput>
-                </Form>
+                <Loan
+                  creditScore={this.state.creditScore}
+                  msrp={this.state.msrp}
+                  tradeIn={this.state.tradeIn}
+                  downPayment={this.state.downPayment}
+                  apr={this.state.apr}
+                  term={this.state.term}
+                  zipCode={this.state.zipCode}
+                  handleChange={v => this.setState(v)}
+                ></Loan>
               </Tab>
               <Tab eventKey="lease" title="Lease">
                 <Col>
