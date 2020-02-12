@@ -3,7 +3,7 @@ const path = require('path'),
   HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  mode: 'development',
+  mode: 'production',
   entry: {
     app: './src/main.tsx',
   },

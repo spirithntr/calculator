@@ -69,7 +69,7 @@ export default class Loan extends Component<Props> {
             <CostInput
               value={this.props.apr * 100}
               handleInputChange={v => this.handleKeyChange('apr', v / 100)}
-              label="APR %"
+              label="APR"
             ></CostInput>
           </Col>
         </Form.Row>

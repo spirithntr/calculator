@@ -25,9 +25,9 @@ export default class InfoCard extends Component<Props> {
         <Card.Body>
           {this.props.dealer ? (
             <ListGroup variant="flush">
-              <ListGroup.Item>MSRP: {this.props.dealer.msrp}</ListGroup.Item>
+              <ListGroup.Item>MSRP: $ {this.props.dealer.msrp}</ListGroup.Item>
               <ListGroup.Item>vehicle: {this.props.dealer.vehicleName}</ListGroup.Item>
-              <ListGroup.Item>monthly pay: {this.props.monthlyPay.toFixed(2)}</ListGroup.Item>
+              <ListGroup.Item>monthly pay: $ {this.props.monthlyPay.toFixed(2)}</ListGroup.Item>
               <ListGroup.Item>taxes: {taxes}</ListGroup.Item>
               <ListGroup.Item>dealer: {this.props.dealer.name}</ListGroup.Item>
               <ListGroup.Item>phone number: {this.props.dealer.phone}</ListGroup.Item>
