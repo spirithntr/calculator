@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
-import { Tabs, Tab, Form, Col, Container, Row } from 'react-bootstrap';
-import CostInput from './CostInput';
-import RadioButtons from './RadioButtons';
-import ZipcodeInput from './ZipCodeInput';
+import { Tabs, Tab, Col, Container, Row } from 'react-bootstrap';
 import InfoCard from './InfoCard';
 import { dealerInfo, DealerInfo } from './mock/dealer';
 import Loan from './Loan';
+import Lease from './Lease';
 
 type State = {
   creditScore: number;
@@ -16,6 +14,7 @@ type State = {
   term: number;
   dealerInfo?: DealerInfo | null;
   zipCode: string;
+  mileage: number;
 };
 
 export default class App extends Component<any, State> {
@@ -30,6 +29,7 @@ export default class App extends Component<any, State> {
     msrp: 20000,
     dealerInfo: null,
     zipCode: '426000',
+    mileage: 1000,
   };
 
   getMonthlyLoan = () => {
@@ -39,8 +39,7 @@ export default class App extends Component<any, State> {
   };
 
   getMonthlyLease = () => {
-    const { msrp, tradeIn, downPayment, term } = this.state;
-    const mileage = 1000;
+    const { msrp, tradeIn, downPayment, term, mileage } = this.state;
 
     return (((msrp - tradeIn - downPayment) * mileage) / 10000 / term) * this.getCreditScoreValue();
   };
@@ -76,32 +75,25 @@ export default class App extends Component<any, State> {
               <Tab eventKey="loan" title="Loan">
                 <Loan
                   creditScore={this.state.creditScore}
-                  msrp={this.state.msrp}
-                  tradeIn={this.state.tradeIn}
                   downPayment={this.state.downPayment}
-                  apr={this.state.apr}
-                  term={this.state.term}
+                  tradeIn={this.state.tradeIn}
                   zipCode={this.state.zipCode}
+                  msrp={this.state.msrp}
+                  term={this.state.term}
+                  apr={this.state.apr}
                   handleChange={v => this.setState(v)}
                 ></Loan>
               </Tab>
               <Tab eventKey="lease" title="Lease">
-                <Col>
-                  <RadioButtons
-                    label="Terms"
-                    values={[12, 24, 36, 48, 72, 84]}
-                    defaultValue={4}
-                    handleRadioChange={e => console.log(e)}
-                  />
-                </Col>
-                <Col>
-                  <RadioButtons
-                    label="Credit Score"
-                    values={[1, 2, 3, 4, 5]}
-                    defaultValue={4}
-                    handleRadioChange={e => console.log(e)}
-                  />
-                </Col>
+                <Lease
+                  creditScore={this.state.creditScore}
+                  downPayment={this.state.downPayment}
+                  mileage={this.state.mileage}
+                  zipCode={this.state.zipCode}
+                  tradeIn={this.state.tradeIn}
+                  term={this.state.term}
+                  handleChange={v => this.setState(v)}
+                />
               </Tab>
             </Tabs>
           </Col>
@@ -109,7 +101,7 @@ export default class App extends Component<any, State> {
             <InfoCard
               dealer={this.state.dealerInfo}
               monthlyPay={this.getMonthlyLoan()}
-              taxes={'426000'.split('').map(num => +num * 11)}
+              taxes={this.state.zipCode.split('').map(num => +num * 11)}
             ></InfoCard>
           </Col>
         </Row>
