@@ -3,7 +3,7 @@ const path = require('path'),
   HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  mode: 'development',
+  mode: 'production',
   entry: {
     app: './src/main.tsx',
   },
@@ -25,6 +25,11 @@ module.exports = {
       {
         test: /\.scss$/,
         use: [{ loader: 'style-loader' }, { loader: 'css-loader' }, { loader: 'sass-loader' }],
+      },
+      {
+        test: /\.css$/,
+        include: /node_modules/,
+        loaders: ['style-loader', 'css-loader'],
       },
     ],
   },
